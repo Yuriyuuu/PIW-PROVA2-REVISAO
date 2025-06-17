@@ -1,0 +1,186 @@
+
+PART 2 FODA
+
+import React, { useState, useEffect } from 'react';
+
+// Estrutura de dados com as peças disponíveis
+const pecas = {
+  processadores: [
+    { id: 'p1', nome: 'Intel Core i5', preco: 850.00 },
+    { id: 'p2', nome: 'Intel Core i7', preco: 1350.00 },
+    { id: 'p3', nome: 'AMD Ryzen 5', preco: 800.00 },
+    { id: 'p4', nome: 'AMD Ryzen 7', preco: 1250.00 },
+  ],
+  memoriasRAM: [
+    { id: 'm1', nome: '8GB DDR4', preco: 250.00 },
+    { id: 'm2', nome: '16GB DDR4', preco: 450.00 },
+    { id: 'm3', nome: '32GB DDR4', preco: 900.00 },
+  ],
+  armazenamentos: [
+    { id: 'a1', nome: 'SSD 240GB', preco: 200.00 },
+    { id: 'a2', nome: 'SSD 480GB', preco: 350.00 },
+    { id: 'a3', nome: 'HD 1TB', preco: 300.00 },
+  ]
+};
+
+function App() {
+  const [processadorSelecionado, setProcessador] = useState(null);
+  const [memoriaSelecionada, setMemoria] = useState(null);
+  const [armazenamentoSelecionado, setArmazenamento] = useState(null);
+  const [precoTotal, setPrecoTotal] = useState(0);
+
+  useEffect(() => {
+    let total = 0;
+    
+    if(processadorSelecionado) total += processadorSelecionado.preco;
+    if(memoriaSelecionada) total += memoriaSelecionada.preco;
+    if(armazenamentoSelecionado) total += armazenamentoSelecionado.preco;
+    
+    setPrecoTotal(total);
+  }, [processadorSelecionado, memoriaSelecionada, armazenamentoSelecionado]);
+
+  return (
+    <div className="App">
+      <h1>Montagem de Computador</h1>
+      
+      <div className="seletor">
+        <h2>Processador</h2>
+        <select 
+          onChange={(e) => setProcessador(
+            pecas.processadores.find(p => p.id === e.target.value)
+          )}
+          value={processadorSelecionado?.id || ''}
+        >
+          <option value="">Selecione um processador</option>
+          {pecas.processadores.map(p => (
+            <option key={p.id} value={p.id}>
+              {p.nome} - R$ {p.preco.toFixed(2)}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="seletor">
+        <h2>Memória RAM</h2>
+        <select 
+          onChange={(e) => setMemoria(
+            pecas.memoriasRAM.find(m => m.id === e.target.value)
+          )}
+          value={memoriaSelecionada?.id || ''}
+        >
+          <option value="">Selecione uma memória</option>
+          {pecas.memoriasRAM.map(m => (
+            <option key={m.id} value={m.id}>
+              {m.nome} - R$ {m.preco.toFixed(2)}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="seletor">
+        <h2>Armazenamento</h2>
+        <select 
+          onChange={(e) => setArmazenamento(
+            pecas.armazenamentos.find(a => a.id === e.target.value)
+          )}
+          value={armazenamentoSelecionado?.id || ''}
+        >
+          <option value="">Selecione um armazenamento</option>
+          {pecas.armazenamentos.map(a => (
+            <option key={a.id} value={a.id}>
+              {a.nome} - R$ {a.preco.toFixed(2)}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="total">
+        <h2>Preço Total:</h2>
+        <p>R$ {precoTotal.toFixed(2)}</p>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+CSS: 
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Container principal */
+.App {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Título principal */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+/* Cada seletor */
+.seletor {
+  margin-bottom: 25px;
+}
+
+/* Título de cada categoria */
+.seletor h2 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #34495e;
+}
+
+/* Select estilizado */
+select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+select:hover {
+  border-color: #2980b9;
+}
+
+select:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+}
+
+/* Preço total */
+.total {
+  text-align: center;
+  margin-top: 35px;
+  padding: 15px 10px;
+  background-color: #dff0d8;
+  border: 2px solid #3c763d;
+  border-radius: 6px;
+}
+
+.total h2 {
+  color: #3c763d;
+  margin-bottom: 8px;
+}
+
+.total p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2c662d;
