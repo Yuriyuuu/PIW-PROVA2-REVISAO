@@ -1,0 +1,128 @@
+/* App.css */
+
+/* Reset básico */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #e4b55f;
+  color: #333;
+}
+
+/* Título da página */
+.titulo {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 28px;
+  color: #222;
+}
+
+/* Seções do conteúdo */
+.secao {
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 0 15px;
+}
+
+/* Subtítulos */
+.subtitulo {
+  font-size: 20px;
+  color: #0d6026;
+  margin-bottom: 10px;
+}
+
+/* Mensagem que aparece conforme a quantidade de favoritos */
+.mensagem {
+  font-style: italic;
+  background-color: #eafae5;
+  padding: 10px;
+  border-radius: 5px;
+  color: #2e7d32;
+}
+
+/* Lista de filmes */
+.lista {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Cada filme na lista */
+.filme {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Título e descrição do filme */
+.info {
+  max-width: 70%;
+}
+
+/* Botões de favoritar e desfavoritar */
+.botao {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+.favoritar {
+  background-color: #28a745;
+}
+
+.desfavoritar {
+  background-color: #dc3545;
+}
+
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
